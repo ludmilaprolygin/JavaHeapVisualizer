@@ -14,10 +14,13 @@ export default function App() {
 
   return (
     <div className="flex h-full flex-col">
-      <header className="flex flex-wrap items-center gap-x-6 gap-y-2 border-b border-zinc-200 px-4 py-2 dark:border-zinc-800">
-        <h1 className="text-lg font-semibold">Java Heap Visualizer</h1>
-        <SourcePicker />
-        <ProjectBar />
+      <header className="flex flex-col gap-2 border-b border-zinc-200 px-4 py-2 dark:border-zinc-800">
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+          <h1 className="text-lg font-semibold">Java Heap Visualizer</h1>
+          <SourcePicker />
+          <ProjectBar />
+        </div>
+        {/* Siempre en su propia fila, debajo del nombre */}
         <StepControls />
       </header>
       <LoadErrorBanner />

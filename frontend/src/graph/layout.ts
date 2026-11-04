@@ -118,11 +118,20 @@ export async function layoutGraph(model: GraphModel): Promise<Layout> {
       'elk.layered.nodePlacement.strategy': 'BRANDES_KOEPF',
     },
     children,
-    edges: model.arrows.map((a) => ({
-      id: a.id,
-      sources: [portId(a.source, a.sourceRow)],
-      targets: [portId(a.target, 'in')],
-    })),
+    edges: [
+      ...model.arrows.map((a) => ({
+        id: a.id,
+        sources: [portId(a.source, a.sourceRow)],
+        targets: [portId(a.target, 'in')],
+      })),
+      // Objetos que nadie referencia (p.ej. recién construidos, todavía sin asignar):
+      // sin una arista elk los pondría en la columna del stack. Esta arista no se dibuja.
+      ...(stack.length
+        ? heap
+            .filter((h) => !model.arrows.some((a) => a.target === h.box.id))
+            .map((h) => ({ id: `__orphan__${h.box.id}`, sources: [STACK_ID], targets: [portId(h.box.id, 'in')] }))
+        : []),
+    ],
   }
   const result = await elk.layout(graph)
 
