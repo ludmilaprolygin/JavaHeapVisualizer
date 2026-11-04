@@ -36,11 +36,6 @@ export default function App() {
           </div>
         </section>
         <section className="relative min-h-0">
-          <div className="absolute top-2 left-3 z-10 flex gap-3 text-xs text-zinc-500">
-            <span>Stack</span>
-            <span>→</span>
-            <span>Heap</span>
-          </div>
           <HeapGraph />
           {!hasTrace && (
             <div className="pointer-events-none absolute inset-0 flex items-center justify-center p-6 text-center text-zinc-500">

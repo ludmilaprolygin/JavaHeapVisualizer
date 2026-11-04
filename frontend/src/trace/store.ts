@@ -1,11 +1,22 @@
 import { create } from 'zustand'
-import { buildProject, ProjectLoadError, withMainClass, type PickedFile, type Project } from '../project/project'
+import {
+  buildProject,
+  projectFromFiles,
+  ProjectLoadError,
+  withFileContent,
+  withMainClass,
+  type PickedFile,
+  type Project,
+} from '../project/project'
 import type { RunRequest, Step, Trace } from './schema'
 import { readTraceFile, TraceLoadError, validateTrace, type Example } from './sources'
 
 interface TraceState {
   trace: Trace | null
-  /** Proyecto Java cargado desde disco (puede no tener traza todavía). */
+  /**
+   * Código editable actual (lo que se ve en el editor y lo que se ejecuta).
+   * Puede no tener traza todavía, o diferir de la traza si se editó después de ejecutar.
+   */
   project: Project | null
   /** Nombre del ejemplo, archivo o carpeta cargado. */
   sourceName: string | null
@@ -14,12 +25,18 @@ interface TraceState {
   index: number
   loadError: string | null
   running: boolean
-  /** Carga una traza. Si viene de ejecutar el proyecto actual, `keepProject` lo conserva. */
+  /**
+   * Carga una traza. Si viene de ejecutar el proyecto actual, `keepProject` conserva el
+   * proyecto (y los modelos del editor, con su historial de deshacer). Si no, el código
+   * de la traza pasa a ser el proyecto editable.
+   */
   load: (trace: Trace, sourceName: string, keepProject?: boolean) => void
   loadExample: (example: Example) => Promise<void>
   /** Punto de entrada para lo que elige o arrastra el usuario: una traza .json o código Java. */
   open: (picked: PickedFile[]) => Promise<void>
   setMainClass: (mainClass: string) => void
+  /** Edición en línea de un archivo del proyecto. */
+  editFile: (path: string, content: string) => void
   run: () => Promise<void>
   dismissError: () => void
   goTo: (index: number) => void
@@ -60,10 +77,10 @@ export const useTraceStore = create<TraceState>((set, get) => {
       set((s) => ({
         trace,
         sourceName,
-        project: keepProject ? s.project : null,
+        project: keepProject && s.project ? s.project : projectFromFiles(sourceName, trace.files, trace.mainClass || null),
         index: 0,
         loadError: null,
-        loadId: s.loadId + 1,
+        loadId: keepProject ? s.loadId : s.loadId + 1,
       })),
 
     loadExample: (example) =>
@@ -90,6 +107,9 @@ export const useTraceStore = create<TraceState>((set, get) => {
 
     setMainClass: (mainClass) =>
       set((s) => (s.project ? { project: withMainClass(s.project, mainClass) } : {})),
+
+    editFile: (path, content) =>
+      set((s) => (s.project ? { project: withFileContent(s.project, path, content) } : {})),
 
     run: async () => {
       const { project } = get()
@@ -123,6 +143,17 @@ export const useTraceStore = create<TraceState>((set, get) => {
     last: () => get().goTo(Number.MAX_SAFE_INTEGER),
   }
 })
+
+/** Archivos cuyo contenido cambió desde la traza mostrada (vacío si no hay traza). */
+export const useModifiedFiles = (): Set<string> => {
+  const trace = useTraceStore((s) => s.trace)
+  const project = useTraceStore((s) => s.project)
+  const modified = new Set<string>()
+  if (!trace || !project) return modified
+  const before = new Map(trace.files.map((f) => [f.path, f.content]))
+  for (const f of project.files) if (before.get(f.path) !== f.content) modified.add(f.path)
+  return modified
+}
 
 export const useCurrentStep = (): Step | undefined =>
   useTraceStore((s) => s.trace?.steps[s.index])

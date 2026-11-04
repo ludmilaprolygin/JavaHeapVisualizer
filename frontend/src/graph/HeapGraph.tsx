@@ -99,6 +99,13 @@ function Graph() {
       elementsSelectable={false}
       colorMode="system"
       minZoom={0.2}
+      // Sin atajos de teclado globales: React Flow escucha Espacio/Backspace en toda la
+      // página y Monaco (que usa EditContext, no un <textarea>) perdería esas teclas.
+      panActivationKeyCode={null}
+      deleteKeyCode={null}
+      selectionKeyCode={null}
+      multiSelectionKeyCode={null}
+      zoomActivationKeyCode={null}
     >
       <Background gap={24} />
       <Controls showInteractive={false} />

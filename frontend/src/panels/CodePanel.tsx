@@ -2,7 +2,7 @@ import Editor, { type Monaco, type OnMount } from '@monaco-editor/react'
 import type { editor } from 'monaco-editor/editor/editor.api'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { SourceFile } from '../trace/schema'
-import { useCurrentStep, useTraceStore } from '../trace/store'
+import { useCurrentStep, useModifiedFiles, useTraceStore } from '../trace/store'
 import { usePrefersDark } from '../usePrefersDark'
 
 const basename = (path: string) => path.slice(path.lastIndexOf('/') + 1)
@@ -28,19 +28,24 @@ export default function CodePanel() {
   const loadId = useTraceStore((s) => s.loadId)
   const index = useTraceStore((s) => s.index)
   const step = useCurrentStep()
+  const editFile = useTraceStore((s) => s.editFile)
+  const modified = useModifiedFiles()
   const dark = usePrefersDark()
 
-  // Sin traza (proyecto recién cargado, todavía sin ejecutar) mostramos los archivos del proyecto.
+  // El editor muestra (y edita) el proyecto. La traza puede corresponder a una versión anterior.
   const files = useMemo(
     () =>
-      trace
-        ? orderFiles(trace.files, trace.mainClass)
-        : project
-          ? orderFiles(project.files, project.mainClass)
+      project
+        ? orderFiles(project.files, project.mainClass)
+        : trace
+          ? orderFiles(trace.files, trace.mainClass)
           : [],
     [trace, project],
   )
-  const labels = useMemo(() => tabLabels(files), [files])
+  // Las pestañas solo cambian si cambia la lista de archivos, no al tipear.
+  const paths = files.map((f) => f.path).join('\n')
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const labels = useMemo(() => tabLabels(files), [paths])
 
   // Por defecto se muestra el archivo que se está ejecutando. Si el usuario elige
   // otra pestaña, se respeta hasta que cambie el paso o la traza.
@@ -61,6 +66,8 @@ export default function CodePanel() {
     editorRef.current = ed
     monacoRef.current = monaco
     decorations.current = ed.createDecorationsCollection()
+    // Ctrl/Cmd+Enter dentro del editor: ejecutar.
+    ed.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => void useTraceStore.getState().run())
     setMounted(true)
   }
 
@@ -101,7 +108,8 @@ export default function CodePanel() {
     if (here) ed.revealLineInCenterIfOutsideViewport(step.line)
   }
 
-  useEffect(highlight, [step, shown, content, mounted, trace])
+  // No depende de `content`: mientras se edita, Monaco corre las marcas junto con el texto.
+  useEffect(highlight, [step, shown, mounted, trace])
 
   // Liberar los modelos de trazas anteriores. El Editor ya pasó al modelo nuevo
   // (los efectos de los hijos corren antes que los del padre).
@@ -139,9 +147,18 @@ export default function CodePanel() {
                   <span className="h-1.5 w-1.5 rounded-full bg-slate-400" title="Hay un método de este archivo en el stack" />
                 ) : null}
                 {labels.get(f.path)}
+                {modified.has(f.path) && (
+                  <span className="text-amber-500" title="Modificado desde la última ejecución">●</span>
+                )}
               </button>
             )
           })}
+        </div>
+      )}
+      {modified.size > 0 && (
+        <div className="flex shrink-0 items-center gap-2 border-b border-amber-200 bg-amber-50 px-3 py-1 text-xs text-amber-900 dark:border-amber-900 dark:bg-amber-950/60 dark:text-amber-200">
+          El código cambió: los pasos y el grafo son de la versión anterior.
+          <span className="opacity-70">Ejecutar ▶ o Ctrl+Enter para actualizar.</span>
         </div>
       )}
       <div className="min-h-0 flex-1">
@@ -151,9 +168,11 @@ export default function CodePanel() {
           value={content}
           theme={dark ? 'vs-dark' : 'vs'}
           onMount={onMount}
+          onChange={(value) => {
+            if (shown && value !== undefined && value !== content) editFile(shown, value)
+          }}
           options={{
-            readOnly: true,
-            domReadOnly: true,
+            readOnly: !project,
             glyphMargin: true,
             minimap: { enabled: false },
             scrollBeyondLastLine: false,

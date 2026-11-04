@@ -103,18 +103,33 @@ export async function buildProject(picked: PickedFile[]): Promise<Project> {
     )
   }
 
+  return projectFromFiles(
+    name,
+    files.map(({ path, content }) => ({ path, content })).sort((a, b) => a.path.localeCompare(b.path)),
+    null,
+    ignored,
+  )
+}
+
+/** Arma un proyecto a partir de archivos ya ubicados, detectando las clases con main. */
+export function projectFromFiles(
+  name: string,
+  files: SourceFile[],
+  preferredMain: string | null,
+  ignored: string[] = [],
+): Project {
   const mainClasses = files
     .filter((f) => hasMain(f.content))
     .map((f) => f.path.replace(/\.java$/, '').replaceAll('/', '.'))
     .sort()
+  const mainClass = preferredMain && mainClasses.includes(preferredMain) ? preferredMain : defaultMain(mainClasses)
+  return { name, files, mainClasses, mainClass, ignored }
+}
 
-  return {
-    name,
-    files: files.map(({ path, content }) => ({ path, content })).sort((a, b) => a.path.localeCompare(b.path)),
-    mainClasses,
-    mainClass: defaultMain(mainClasses),
-    ignored,
-  }
+/** El proyecto con el contenido de un archivo reemplazado (edición en el editor). */
+export function withFileContent(project: Project, path: string, content: string): Project {
+  const files = project.files.map((f) => (f.path === path ? { ...f, content } : f))
+  return projectFromFiles(project.name, files, project.mainClass, project.ignored)
 }
 
 // ---------------------------------------------------------------------------
