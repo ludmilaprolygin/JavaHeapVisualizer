@@ -1,5 +1,5 @@
 /**
- * Genera shared/schema/trace.schema.json a partir del esquema zod y valida
+ * Genera shared/schema/{trace,run-request}.schema.json a partir del esquema zod y valida
  * todos los ejemplos de shared/examples contra él.
  *
  *   npm run schema
@@ -7,18 +7,22 @@
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { z } from 'zod'
-import { Trace } from '../src/trace/schema.ts'
+import { RunRequest, Trace } from '../src/trace/schema.ts'
 
 const shared = join(import.meta.dirname, '..', '..', 'shared')
 
-const jsonSchema = {
-  ...z.toJSONSchema(Trace, { target: 'draft-2020-12' }),
-  $id: 'https://java-heap-visualizer/trace.schema.json',
-  title: 'Trace',
-  description: 'Traza paso a paso de la ejecución de un programa Java. Generado desde frontend/src/trace/schema.ts — no editar a mano.',
+function emit(schema: z.ZodType, file: string, title: string, description: string) {
+  const json = {
+    ...z.toJSONSchema(schema, { target: 'draft-2020-12' }),
+    $id: `https://java-heap-visualizer/${file}`,
+    title,
+    description: `${description} Generado desde frontend/src/trace/schema.ts — no editar a mano.`,
+  }
+  writeFileSync(join(shared, 'schema', file), JSON.stringify(json, null, 2) + '\n')
+  console.log(`✔ shared/schema/${file}`)
 }
-writeFileSync(join(shared, 'schema', 'trace.schema.json'), JSON.stringify(jsonSchema, null, 2) + '\n')
-console.log('✔ shared/schema/trace.schema.json')
+emit(Trace, 'trace.schema.json', 'Trace', 'Traza paso a paso de la ejecución de un programa Java.')
+emit(RunRequest, 'run-request.schema.json', 'RunRequest', 'Pedido de ejecución que el frontend manda a POST /api/run.')
 
 let failed = false
 const examplesDir = join(shared, 'examples')
@@ -37,6 +41,18 @@ for (const file of readdirSync(examplesDir).filter((f) => f.endsWith('.json'))) 
   if (dangling.length) {
     failed = true
     console.error(`✘ ${file}: referencias colgadas\n  ${dangling.join('\n  ')}`)
+    continue
+  }
+  // Y todo archivo mencionado existe en `files`.
+  const paths = new Set(result.data.files.map((f) => f.path))
+  const missing = result.data.steps.flatMap((step, i) =>
+    [step.file, ...step.stack.map((f) => f.file)]
+      .filter((p) => !paths.has(p))
+      .map((p) => `paso ${i}: ${p}`),
+  )
+  if (missing.length) {
+    failed = true
+    console.error(`✘ ${file}: archivos que no están en files\n  ${[...new Set(missing)].join('\n  ')}`)
     continue
   }
   console.log(`✔ ${file} (${result.data.steps.length} pasos)`)

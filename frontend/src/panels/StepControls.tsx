@@ -3,7 +3,7 @@ import { formatValue, frameTitle, heapTitle } from '../trace/format'
 import type { Step } from '../trace/schema'
 import { useCurrentStep, useTraceStore } from '../trace/store'
 
-function describe(step: Step): string {
+function describe(step: Step, multiFile: boolean): string {
   const top = step.stack.at(-1)
   switch (step.event) {
     case 'call':
@@ -19,7 +19,9 @@ function describe(step: Step): string {
     case 'exception':
       return `Excepción ${step.exception?.class ?? ''}${step.exception?.message ? `: ${step.exception.message}` : ''}`
     case 'line':
-      return `Por ejecutar la línea ${step.line}`
+      return multiFile
+        ? `Por ejecutar ${step.file.slice(step.file.lastIndexOf('/') + 1)}:${step.line}`
+        : `Por ejecutar la línea ${step.line}`
   }
 }
 
@@ -80,7 +82,7 @@ export default function StepControls() {
             : 'bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300'
         }`}
       >
-        {describe(step)}
+        {describe(step, trace.files.length > 1)}
       </span>
     </div>
   )

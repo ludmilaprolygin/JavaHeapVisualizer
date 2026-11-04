@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "files": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "pattern": "^(?!\\/)(?!.*\\.\\.)[^\\\\]+\\.java$"
+          },
+          "content": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "content"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "mainClass": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "files"
+  ],
+  "additionalProperties": false,
+  "$id": "https://java-heap-visualizer/run-request.schema.json",
+  "title": "RunRequest",
+  "description": "Pedido de ejecución que el frontend manda a POST /api/run. Generado desde frontend/src/trace/schema.ts — no editar a mano."
+}

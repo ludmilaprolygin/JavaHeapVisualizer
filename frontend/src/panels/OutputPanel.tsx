@@ -22,7 +22,10 @@ export default function OutputPanel() {
         <div className="bg-red-50 px-3 py-1.5 text-sm text-red-800 dark:bg-red-950 dark:text-red-200">
           {status}
           {trace?.error && `: ${trace.error.message}`}
-          {trace?.error?.line && ` (línea ${trace.error.line})`}
+          {trace?.error?.line &&
+            (trace.error.file && trace.files.length > 1
+              ? ` (${trace.error.file}:${trace.error.line})`
+              : ` (línea ${trace.error.line})`)}
         </div>
       )}
       <pre className="flex-1 overflow-auto px-3 py-2 font-mono text-sm">

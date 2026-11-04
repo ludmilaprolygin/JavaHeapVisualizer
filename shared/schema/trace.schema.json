@@ -4,10 +4,28 @@
   "properties": {
     "version": {
       "type": "number",
-      "const": 1
+      "const": 2
     },
-    "source": {
-      "type": "string"
+    "files": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "pattern": "^(?!\\/)(?!.*\\.\\.)[^\\\\]+\\.java$"
+          },
+          "content": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "content"
+        ],
+        "additionalProperties": false
+      }
     },
     "mainClass": {
       "type": "string"
@@ -27,6 +45,10 @@
       "properties": {
         "message": {
           "type": "string"
+        },
+        "file": {
+          "type": "string",
+          "pattern": "^(?!\\/)(?!.*\\.\\.)[^\\\\]+\\.java$"
         },
         "line": {
           "type": "integer",
@@ -58,6 +80,10 @@
               "exception"
             ]
           },
+          "file": {
+            "type": "string",
+            "pattern": "^(?!\\/)(?!.*\\.\\.)[^\\\\]+\\.java$"
+          },
           "line": {
             "type": "integer",
             "exclusiveMinimum": 0,
@@ -76,6 +102,10 @@
                 },
                 "method": {
                   "type": "string"
+                },
+                "file": {
+                  "type": "string",
+                  "pattern": "^(?!\\/)(?!.*\\.\\.)[^\\\\]+\\.java$"
                 },
                 "line": {
                   "type": "integer",
@@ -165,13 +195,15 @@
                       "value"
                     ],
                     "additionalProperties": false
-                  }
+                  },
+                  "description": "Variables visibles, en orden de declaración (this primero). Omitir el parámetro args del main de mainClass y su String[]."
                 }
               },
               "required": [
                 "id",
                 "class",
                 "method",
+                "file",
                 "line",
                 "locals"
               ],
@@ -1015,6 +1047,7 @@
         },
         "required": [
           "event",
+          "file",
           "line",
           "stack",
           "heap",
@@ -1027,7 +1060,7 @@
   },
   "required": [
     "version",
-    "source",
+    "files",
     "mainClass",
     "status",
     "steps"

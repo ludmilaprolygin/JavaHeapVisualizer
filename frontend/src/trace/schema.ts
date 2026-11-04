@@ -5,13 +5,27 @@
  * `npm run schema` genera shared/schema/trace.schema.json para el backend.
  *
  * Modelo: una traza es una lista de pasos. Cada paso es una foto COMPLETA
- * del estado justo ANTES de ejecutar `line` (igual que un StepEvent de JDI).
+ * del estado justo ANTES de ejecutar `file`:`line` (igual que un StepEvent de JDI).
+ *
+ * Proyectos de varios archivos: todas las rutas (`files[].path`, `Frame.file`,
+ * `Step.file`) son relativas a la raíz de paquetes, con "/" como separador:
+ * "com/banco/Cuenta.java". Es lo mismo que devuelve Location.sourcePath() en JDI.
  * Las fotos completas hacen trivial ir hacia atrás y comparar pasos; para
  * programas didácticos el tamaño no es problema.
  */
 import { z } from 'zod'
 
-export const TRACE_VERSION = 1
+export const TRACE_VERSION = 2
+
+/** Ruta relativa a la raíz de paquetes, p.ej. "com/banco/Cuenta.java". */
+export const SourcePath = z
+  .string()
+  .regex(/^(?!\/)(?!.*\.\.)[^\\]+\.java$/, 'ruta relativa con "/" que termina en .java')
+
+export const SourceFile = z.object({
+  path: SourcePath,
+  content: z.string(),
+})
 
 // ---------------------------------------------------------------------------
 // Valores: lo que puede haber en una variable local, un campo o una celda.
@@ -135,9 +149,19 @@ export const Frame = z.object({
   class: z.string(),
   /** "main", "<init>" para constructores, "<clinit>" para inicializadores estáticos. */
   method: z.string(),
+  /** Archivo y línea donde está detenido este frame (para el tope, = Step.file/line). */
+  file: SourcePath,
   line: z.number().int(),
-  /** Variables visibles en ese punto, en orden de declaración. `this` va primero si existe. */
-  locals: z.array(z.object({ name: z.string(), value: Value })),
+  /**
+   * Variables visibles en ese punto, en orden de declaración. `this` va primero si existe.
+   * El parámetro `args` del `main` de `mainClass` NO se incluye (ni su String[] en el heap):
+   * el programa no recibe argumentos y solo agrega ruido.
+   */
+  locals: z
+    .array(z.object({ name: z.string(), value: Value }))
+    .describe(
+      'Variables visibles, en orden de declaración (this primero). Omitir el parámetro args del main de mainClass y su String[].',
+    ),
 })
 
 export const StepEvent = z.enum([
@@ -153,7 +177,8 @@ export const StepEvent = z.enum([
 
 export const Step = z.object({
   event: StepEvent,
-  /** Línea del archivo fuente (1-based) que se está por ejecutar. */
+  /** Archivo (uno de `Trace.files`) y línea (1-based) que se está por ejecutar. */
+  file: SourcePath,
   line: z.number().int().positive(),
   /** Pila de llamadas: índice 0 = main (fondo), último = frame actual (tope). */
   stack: z.array(Frame),
@@ -186,13 +211,15 @@ export const TraceStatus = z.enum([
 
 export const Trace = z.object({
   version: z.literal(TRACE_VERSION),
-  /** Código fuente tal como se ejecutó (para mostrarlo en Monaco). */
-  source: z.string(),
+  /** Archivos fuente tal como se ejecutaron (para mostrarlos en Monaco). */
+  files: z.array(SourceFile).min(1),
+  /** Nombre completo de la clase con el main que se ejecutó, p.ej. "com.banco.Main". */
   mainClass: z.string(),
   status: TraceStatus,
   error: z
     .object({
       message: z.string(),
+      file: SourcePath.optional(),
       line: z.number().int().positive().optional(),
       column: z.number().int().positive().optional(),
     })
@@ -201,9 +228,26 @@ export const Trace = z.object({
 })
 
 // ---------------------------------------------------------------------------
+// Pedido frontend -> backend: POST /api/run
+// ---------------------------------------------------------------------------
+
+export const RunRequest = z.object({
+  /** Todos los .java del proyecto. Rutas relativas a la raíz de paquetes. */
+  files: z.array(SourceFile).min(1),
+  /**
+   * Clase a ejecutar, p.ej. "com.banco.Main". Opcional si hay un único
+   * `public static void main(String[])`; si hay varios, el backend responde
+   * compile_error pidiendo que se elija uno.
+   */
+  mainClass: z.string().optional(),
+})
+
+// ---------------------------------------------------------------------------
 // Tipos TS
 // ---------------------------------------------------------------------------
 
+export type SourceFile = z.infer<typeof SourceFile>
+export type RunRequest = z.infer<typeof RunRequest>
 export type PrimitiveType = z.infer<typeof PrimitiveType>
 export type PrimValue = z.infer<typeof PrimValue>
 export type RefValue = z.infer<typeof RefValue>

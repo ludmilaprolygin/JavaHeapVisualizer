@@ -1,0 +1,751 @@
+{
+  "version": 2,
+  "files": [
+    {
+      "path": "com/banco/Main.java",
+      "content": "package com.banco;\n\npublic class Main {\n    public static void main(String[] args) {\n        Cuenta c = new Cuenta(\"Ana\");\n        c.depositar(100);\n        int total = c.getSaldo();\n        System.out.println(total);\n    }\n}\n"
+    },
+    {
+      "path": "com/banco/Cuenta.java",
+      "content": "package com.banco;\n\npublic class Cuenta {\n    private final String titular;\n    private int saldo;\n\n    public Cuenta(String titular) {\n        this.titular = titular;\n    }\n\n    public void depositar(int monto) {\n        saldo += monto;\n    }\n\n    public int getSaldo() {\n        return saldo;\n    }\n}\n"
+    }
+  ],
+  "mainClass": "com.banco.Main",
+  "status": "ok",
+  "steps": [
+    {
+      "event": "call",
+      "file": "com/banco/Main.java",
+      "line": 5,
+      "statics": {},
+      "stdout": "",
+      "stack": [
+        {
+          "id": "f1",
+          "class": "com.banco.Main",
+          "method": "main",
+          "file": "com/banco/Main.java",
+          "line": 5,
+          "locals": []
+        }
+      ],
+      "heap": {}
+    },
+    {
+      "event": "call",
+      "file": "com/banco/Cuenta.java",
+      "line": 7,
+      "statics": {},
+      "stdout": "",
+      "stack": [
+        {
+          "id": "f1",
+          "class": "com.banco.Main",
+          "method": "main",
+          "file": "com/banco/Main.java",
+          "line": 5,
+          "locals": []
+        },
+        {
+          "id": "f2",
+          "class": "com.banco.Cuenta",
+          "method": "<init>",
+          "file": "com/banco/Cuenta.java",
+          "line": 7,
+          "locals": [
+            {
+              "name": "this",
+              "value": {
+                "kind": "ref",
+                "id": "o1"
+              }
+            },
+            {
+              "name": "titular",
+              "value": {
+                "kind": "ref",
+                "id": "o2"
+              }
+            }
+          ]
+        }
+      ],
+      "heap": {
+        "o1": {
+          "kind": "object",
+          "class": "com.banco.Cuenta",
+          "fields": [
+            {
+              "name": "titular",
+              "value": {
+                "kind": "null"
+              }
+            },
+            {
+              "name": "saldo",
+              "value": {
+                "kind": "prim",
+                "type": "int",
+                "value": 0
+              }
+            }
+          ]
+        },
+        "o2": {
+          "kind": "string",
+          "value": "Ana"
+        }
+      }
+    },
+    {
+      "event": "line",
+      "file": "com/banco/Cuenta.java",
+      "line": 8,
+      "statics": {},
+      "stdout": "",
+      "stack": [
+        {
+          "id": "f1",
+          "class": "com.banco.Main",
+          "method": "main",
+          "file": "com/banco/Main.java",
+          "line": 5,
+          "locals": []
+        },
+        {
+          "id": "f2",
+          "class": "com.banco.Cuenta",
+          "method": "<init>",
+          "file": "com/banco/Cuenta.java",
+          "line": 8,
+          "locals": [
+            {
+              "name": "this",
+              "value": {
+                "kind": "ref",
+                "id": "o1"
+              }
+            },
+            {
+              "name": "titular",
+              "value": {
+                "kind": "ref",
+                "id": "o2"
+              }
+            }
+          ]
+        }
+      ],
+      "heap": {
+        "o1": {
+          "kind": "object",
+          "class": "com.banco.Cuenta",
+          "fields": [
+            {
+              "name": "titular",
+              "value": {
+                "kind": "null"
+              }
+            },
+            {
+              "name": "saldo",
+              "value": {
+                "kind": "prim",
+                "type": "int",
+                "value": 0
+              }
+            }
+          ]
+        },
+        "o2": {
+          "kind": "string",
+          "value": "Ana"
+        }
+      }
+    },
+    {
+      "event": "line",
+      "file": "com/banco/Cuenta.java",
+      "line": 9,
+      "statics": {},
+      "stdout": "",
+      "stack": [
+        {
+          "id": "f1",
+          "class": "com.banco.Main",
+          "method": "main",
+          "file": "com/banco/Main.java",
+          "line": 5,
+          "locals": []
+        },
+        {
+          "id": "f2",
+          "class": "com.banco.Cuenta",
+          "method": "<init>",
+          "file": "com/banco/Cuenta.java",
+          "line": 9,
+          "locals": [
+            {
+              "name": "this",
+              "value": {
+                "kind": "ref",
+                "id": "o1"
+              }
+            },
+            {
+              "name": "titular",
+              "value": {
+                "kind": "ref",
+                "id": "o2"
+              }
+            }
+          ]
+        }
+      ],
+      "heap": {
+        "o1": {
+          "kind": "object",
+          "class": "com.banco.Cuenta",
+          "fields": [
+            {
+              "name": "titular",
+              "value": {
+                "kind": "ref",
+                "id": "o2"
+              }
+            },
+            {
+              "name": "saldo",
+              "value": {
+                "kind": "prim",
+                "type": "int",
+                "value": 0
+              }
+            }
+          ]
+        },
+        "o2": {
+          "kind": "string",
+          "value": "Ana"
+        }
+      }
+    },
+    {
+      "event": "line",
+      "file": "com/banco/Main.java",
+      "line": 6,
+      "statics": {},
+      "stdout": "",
+      "stack": [
+        {
+          "id": "f1",
+          "class": "com.banco.Main",
+          "method": "main",
+          "file": "com/banco/Main.java",
+          "line": 6,
+          "locals": [
+            {
+              "name": "c",
+              "value": {
+                "kind": "ref",
+                "id": "o1"
+              }
+            }
+          ]
+        }
+      ],
+      "heap": {
+        "o1": {
+          "kind": "object",
+          "class": "com.banco.Cuenta",
+          "fields": [
+            {
+              "name": "titular",
+              "value": {
+                "kind": "ref",
+                "id": "o2"
+              }
+            },
+            {
+              "name": "saldo",
+              "value": {
+                "kind": "prim",
+                "type": "int",
+                "value": 0
+              }
+            }
+          ]
+        },
+        "o2": {
+          "kind": "string",
+          "value": "Ana"
+        }
+      }
+    },
+    {
+      "event": "call",
+      "file": "com/banco/Cuenta.java",
+      "line": 12,
+      "statics": {},
+      "stdout": "",
+      "stack": [
+        {
+          "id": "f1",
+          "class": "com.banco.Main",
+          "method": "main",
+          "file": "com/banco/Main.java",
+          "line": 6,
+          "locals": [
+            {
+              "name": "c",
+              "value": {
+                "kind": "ref",
+                "id": "o1"
+              }
+            }
+          ]
+        },
+        {
+          "id": "f3",
+          "class": "com.banco.Cuenta",
+          "method": "depositar",
+          "file": "com/banco/Cuenta.java",
+          "line": 12,
+          "locals": [
+            {
+              "name": "this",
+              "value": {
+                "kind": "ref",
+                "id": "o1"
+              }
+            },
+            {
+              "name": "monto",
+              "value": {
+                "kind": "prim",
+                "type": "int",
+                "value": 100
+              }
+            }
+          ]
+        }
+      ],
+      "heap": {
+        "o1": {
+          "kind": "object",
+          "class": "com.banco.Cuenta",
+          "fields": [
+            {
+              "name": "titular",
+              "value": {
+                "kind": "ref",
+                "id": "o2"
+              }
+            },
+            {
+              "name": "saldo",
+              "value": {
+                "kind": "prim",
+                "type": "int",
+                "value": 0
+              }
+            }
+          ]
+        },
+        "o2": {
+          "kind": "string",
+          "value": "Ana"
+        }
+      }
+    },
+    {
+      "event": "line",
+      "file": "com/banco/Cuenta.java",
+      "line": 13,
+      "statics": {},
+      "stdout": "",
+      "stack": [
+        {
+          "id": "f1",
+          "class": "com.banco.Main",
+          "method": "main",
+          "file": "com/banco/Main.java",
+          "line": 6,
+          "locals": [
+            {
+              "name": "c",
+              "value": {
+                "kind": "ref",
+                "id": "o1"
+              }
+            }
+          ]
+        },
+        {
+          "id": "f3",
+          "class": "com.banco.Cuenta",
+          "method": "depositar",
+          "file": "com/banco/Cuenta.java",
+          "line": 13,
+          "locals": [
+            {
+              "name": "this",
+              "value": {
+                "kind": "ref",
+                "id": "o1"
+              }
+            },
+            {
+              "name": "monto",
+              "value": {
+                "kind": "prim",
+                "type": "int",
+                "value": 100
+              }
+            }
+          ]
+        }
+      ],
+      "heap": {
+        "o1": {
+          "kind": "object",
+          "class": "com.banco.Cuenta",
+          "fields": [
+            {
+              "name": "titular",
+              "value": {
+                "kind": "ref",
+                "id": "o2"
+              }
+            },
+            {
+              "name": "saldo",
+              "value": {
+                "kind": "prim",
+                "type": "int",
+                "value": 100
+              }
+            }
+          ]
+        },
+        "o2": {
+          "kind": "string",
+          "value": "Ana"
+        }
+      }
+    },
+    {
+      "event": "line",
+      "file": "com/banco/Main.java",
+      "line": 7,
+      "statics": {},
+      "stdout": "",
+      "stack": [
+        {
+          "id": "f1",
+          "class": "com.banco.Main",
+          "method": "main",
+          "file": "com/banco/Main.java",
+          "line": 7,
+          "locals": [
+            {
+              "name": "c",
+              "value": {
+                "kind": "ref",
+                "id": "o1"
+              }
+            }
+          ]
+        }
+      ],
+      "heap": {
+        "o1": {
+          "kind": "object",
+          "class": "com.banco.Cuenta",
+          "fields": [
+            {
+              "name": "titular",
+              "value": {
+                "kind": "ref",
+                "id": "o2"
+              }
+            },
+            {
+              "name": "saldo",
+              "value": {
+                "kind": "prim",
+                "type": "int",
+                "value": 100
+              }
+            }
+          ]
+        },
+        "o2": {
+          "kind": "string",
+          "value": "Ana"
+        }
+      }
+    },
+    {
+      "event": "call",
+      "file": "com/banco/Cuenta.java",
+      "line": 16,
+      "statics": {},
+      "stdout": "",
+      "stack": [
+        {
+          "id": "f1",
+          "class": "com.banco.Main",
+          "method": "main",
+          "file": "com/banco/Main.java",
+          "line": 7,
+          "locals": [
+            {
+              "name": "c",
+              "value": {
+                "kind": "ref",
+                "id": "o1"
+              }
+            }
+          ]
+        },
+        {
+          "id": "f4",
+          "class": "com.banco.Cuenta",
+          "method": "getSaldo",
+          "file": "com/banco/Cuenta.java",
+          "line": 16,
+          "locals": [
+            {
+              "name": "this",
+              "value": {
+                "kind": "ref",
+                "id": "o1"
+              }
+            }
+          ]
+        }
+      ],
+      "heap": {
+        "o1": {
+          "kind": "object",
+          "class": "com.banco.Cuenta",
+          "fields": [
+            {
+              "name": "titular",
+              "value": {
+                "kind": "ref",
+                "id": "o2"
+              }
+            },
+            {
+              "name": "saldo",
+              "value": {
+                "kind": "prim",
+                "type": "int",
+                "value": 100
+              }
+            }
+          ]
+        },
+        "o2": {
+          "kind": "string",
+          "value": "Ana"
+        }
+      }
+    },
+    {
+      "event": "return",
+      "file": "com/banco/Cuenta.java",
+      "line": 16,
+      "statics": {},
+      "stdout": "",
+      "stack": [
+        {
+          "id": "f1",
+          "class": "com.banco.Main",
+          "method": "main",
+          "file": "com/banco/Main.java",
+          "line": 7,
+          "locals": [
+            {
+              "name": "c",
+              "value": {
+                "kind": "ref",
+                "id": "o1"
+              }
+            }
+          ]
+        },
+        {
+          "id": "f4",
+          "class": "com.banco.Cuenta",
+          "method": "getSaldo",
+          "file": "com/banco/Cuenta.java",
+          "line": 16,
+          "locals": [
+            {
+              "name": "this",
+              "value": {
+                "kind": "ref",
+                "id": "o1"
+              }
+            }
+          ]
+        }
+      ],
+      "heap": {
+        "o1": {
+          "kind": "object",
+          "class": "com.banco.Cuenta",
+          "fields": [
+            {
+              "name": "titular",
+              "value": {
+                "kind": "ref",
+                "id": "o2"
+              }
+            },
+            {
+              "name": "saldo",
+              "value": {
+                "kind": "prim",
+                "type": "int",
+                "value": 100
+              }
+            }
+          ]
+        },
+        "o2": {
+          "kind": "string",
+          "value": "Ana"
+        }
+      },
+      "returnValue": {
+        "kind": "prim",
+        "type": "int",
+        "value": 100
+      }
+    },
+    {
+      "event": "line",
+      "file": "com/banco/Main.java",
+      "line": 8,
+      "statics": {},
+      "stdout": "",
+      "stack": [
+        {
+          "id": "f1",
+          "class": "com.banco.Main",
+          "method": "main",
+          "file": "com/banco/Main.java",
+          "line": 8,
+          "locals": [
+            {
+              "name": "c",
+              "value": {
+                "kind": "ref",
+                "id": "o1"
+              }
+            },
+            {
+              "name": "total",
+              "value": {
+                "kind": "prim",
+                "type": "int",
+                "value": 100
+              }
+            }
+          ]
+        }
+      ],
+      "heap": {
+        "o1": {
+          "kind": "object",
+          "class": "com.banco.Cuenta",
+          "fields": [
+            {
+              "name": "titular",
+              "value": {
+                "kind": "ref",
+                "id": "o2"
+              }
+            },
+            {
+              "name": "saldo",
+              "value": {
+                "kind": "prim",
+                "type": "int",
+                "value": 100
+              }
+            }
+          ]
+        },
+        "o2": {
+          "kind": "string",
+          "value": "Ana"
+        }
+      }
+    },
+    {
+      "event": "line",
+      "file": "com/banco/Main.java",
+      "line": 9,
+      "statics": {},
+      "stdout": "100\n",
+      "stack": [
+        {
+          "id": "f1",
+          "class": "com.banco.Main",
+          "method": "main",
+          "file": "com/banco/Main.java",
+          "line": 9,
+          "locals": [
+            {
+              "name": "c",
+              "value": {
+                "kind": "ref",
+                "id": "o1"
+              }
+            },
+            {
+              "name": "total",
+              "value": {
+                "kind": "prim",
+                "type": "int",
+                "value": 100
+              }
+            }
+          ]
+        }
+      ],
+      "heap": {
+        "o1": {
+          "kind": "object",
+          "class": "com.banco.Cuenta",
+          "fields": [
+            {
+              "name": "titular",
+              "value": {
+                "kind": "ref",
+                "id": "o2"
+              }
+            },
+            {
+              "name": "saldo",
+              "value": {
+                "kind": "prim",
+                "type": "int",
+                "value": 100
+              }
+            }
+          ]
+        },
+        "o2": {
+          "kind": "string",
+          "value": "Ana"
+        }
+      }
+    }
+  ]
+}
