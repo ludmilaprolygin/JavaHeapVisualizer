@@ -1,0 +1,40 @@
+@import 'tailwindcss';
+
+:root {
+  color-scheme: light dark;
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100;
+}
+
+/* Al cambiar de paso, los nodos se deslizan a su nueva posición. */
+.heap-graph .react-flow__node {
+  transition: transform 300ms ease;
+}
+
+/* Línea actual en Monaco */
+.jhv-current-line {
+  background: rgb(250 204 21 / 0.25);
+}
+.jhv-current-line-glyph::before {
+  content: '▶';
+  color: rgb(234 179 8);
+  padding-left: 4px;
+}
+/* Líneas de los frames que esperan (llamadores) */
+.jhv-caller-line {
+  background: rgb(148 163 184 / 0.15);
+}
+
+/* Las flechas acompañan el movimiento de los nodos (Chromium/Firefox). */
+.heap-graph .react-flow__edge-path {
+  transition: d 300ms ease;
+}
