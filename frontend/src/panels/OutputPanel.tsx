@@ -4,8 +4,9 @@ const statusText = {
   ok: null,
   compile_error: 'Error de compilación',
   runtime_error: 'Terminó por una excepción',
-  step_limit: 'Se alcanzó el máximo de pasos',
-  timeout: 'Se superó el tiempo máximo',
+  step_limit: 'Se alcanzó el máximo de pasos (1000): se muestran los primeros',
+  timeout:
+    'Se superó el tiempo máximo (10 s). Ojo: un bucle escrito entero en una sola línea no genera pasos nuevos',
 } as const
 
 export default function OutputPanel() {

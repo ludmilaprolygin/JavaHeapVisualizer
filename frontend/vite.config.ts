@@ -14,5 +14,7 @@ export default defineConfig({
   server: {
     // Permite importar ../shared (ejemplos de trazas) desde el dev server.
     fs: { allow: ['.', shared] },
+    // El backend (Javalin) va a escuchar en 7070.
+    proxy: { '/api': 'http://localhost:7070' },
   },
 })

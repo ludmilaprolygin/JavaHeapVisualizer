@@ -29,6 +29,15 @@ body {
   color: rgb(234 179 8);
   padding-left: 4px;
 }
+/* Línea con error de compilación */
+.jhv-error-line {
+  background: rgb(239 68 68 / 0.2);
+}
+.jhv-error-line-glyph::before {
+  content: '✖';
+  color: rgb(239 68 68);
+  padding-left: 4px;
+}
 /* Líneas de los frames que esperan (llamadores) */
 .jhv-caller-line {
   background: rgb(148 163 184 / 0.15);

@@ -15,276 +15,275 @@
   },
   "steps": [
     {
-      "stdout": "",
-      "statics": {},
       "event": "call",
+      "file": "Main.java",
       "line": 5,
       "stack": [
         {
           "id": "f1",
           "class": "Main",
           "method": "main",
+          "file": "Main.java",
           "line": 5,
-          "locals": [],
-          "file": "Main.java"
+          "locals": []
         }
       ],
       "heap": {},
-      "file": "Main.java"
+      "statics": {},
+      "stdout": ""
     },
     {
-      "stdout": "",
-      "statics": {},
       "event": "line",
+      "file": "Main.java",
       "line": 6,
       "stack": [
         {
           "id": "f1",
           "class": "Main",
           "method": "main",
+          "file": "Main.java",
           "line": 6,
           "locals": [
             {
               "name": "nombres",
               "value": {
                 "kind": "ref",
-                "id": "o1"
+                "id": "o55"
               }
             }
-          ],
-          "file": "Main.java"
+          ]
         }
       ],
       "heap": {
-        "o1": {
+        "o55": {
           "kind": "list",
           "class": "java.util.ArrayList",
           "items": []
         }
       },
-      "file": "Main.java"
+      "statics": {},
+      "stdout": ""
     },
     {
-      "stdout": "",
-      "statics": {},
       "event": "line",
+      "file": "Main.java",
       "line": 7,
       "stack": [
         {
           "id": "f1",
           "class": "Main",
           "method": "main",
+          "file": "Main.java",
           "line": 7,
           "locals": [
             {
               "name": "nombres",
               "value": {
                 "kind": "ref",
-                "id": "o1"
+                "id": "o55"
               }
             }
-          ],
-          "file": "Main.java"
+          ]
         }
       ],
       "heap": {
-        "o1": {
+        "o55": {
           "kind": "list",
           "class": "java.util.ArrayList",
           "items": [
             {
               "kind": "ref",
-              "id": "o2"
+              "id": "o60"
             }
           ]
         },
-        "o2": {
+        "o60": {
           "kind": "string",
           "value": "Ana"
         }
       },
-      "file": "Main.java"
+      "statics": {},
+      "stdout": ""
     },
     {
-      "stdout": "",
-      "statics": {},
       "event": "line",
+      "file": "Main.java",
       "line": 8,
       "stack": [
         {
           "id": "f1",
           "class": "Main",
           "method": "main",
+          "file": "Main.java",
           "line": 8,
           "locals": [
             {
               "name": "nombres",
               "value": {
                 "kind": "ref",
-                "id": "o1"
+                "id": "o55"
               }
             }
-          ],
-          "file": "Main.java"
+          ]
         }
       ],
       "heap": {
-        "o1": {
+        "o55": {
           "kind": "list",
           "class": "java.util.ArrayList",
           "items": [
             {
               "kind": "ref",
-              "id": "o2"
+              "id": "o60"
             },
             {
               "kind": "ref",
-              "id": "o3"
+              "id": "o62"
             }
           ]
         },
-        "o2": {
+        "o60": {
           "kind": "string",
           "value": "Ana"
         },
-        "o3": {
+        "o62": {
           "kind": "string",
           "value": "Beto"
         }
       },
-      "file": "Main.java"
+      "statics": {},
+      "stdout": ""
     },
     {
-      "stdout": "",
-      "statics": {},
       "event": "line",
+      "file": "Main.java",
       "line": 9,
       "stack": [
         {
           "id": "f1",
           "class": "Main",
           "method": "main",
+          "file": "Main.java",
           "line": 9,
           "locals": [
             {
               "name": "nombres",
               "value": {
                 "kind": "ref",
-                "id": "o1"
+                "id": "o55"
               }
             },
             {
               "name": "edades",
               "value": {
                 "kind": "ref",
-                "id": "o4"
+                "id": "o63"
               }
             }
-          ],
-          "file": "Main.java"
+          ]
         }
       ],
       "heap": {
-        "o1": {
+        "o55": {
           "kind": "list",
           "class": "java.util.ArrayList",
           "items": [
             {
               "kind": "ref",
-              "id": "o2"
+              "id": "o60"
             },
             {
               "kind": "ref",
-              "id": "o3"
+              "id": "o62"
             }
           ]
         },
-        "o2": {
-          "kind": "string",
-          "value": "Ana"
-        },
-        "o3": {
-          "kind": "string",
-          "value": "Beto"
-        },
-        "o4": {
+        "o63": {
           "kind": "map",
           "class": "java.util.HashMap",
           "entries": []
+        },
+        "o60": {
+          "kind": "string",
+          "value": "Ana"
+        },
+        "o62": {
+          "kind": "string",
+          "value": "Beto"
         }
       },
-      "file": "Main.java"
+      "statics": {},
+      "stdout": ""
     },
     {
-      "stdout": "",
-      "statics": {},
       "event": "line",
+      "file": "Main.java",
       "line": 10,
       "stack": [
         {
           "id": "f1",
           "class": "Main",
           "method": "main",
+          "file": "Main.java",
           "line": 10,
           "locals": [
             {
               "name": "nombres",
               "value": {
                 "kind": "ref",
-                "id": "o1"
+                "id": "o55"
               }
             },
             {
               "name": "edades",
               "value": {
                 "kind": "ref",
-                "id": "o4"
+                "id": "o63"
               }
             }
-          ],
-          "file": "Main.java"
+          ]
         }
       ],
       "heap": {
-        "o1": {
+        "o55": {
           "kind": "list",
           "class": "java.util.ArrayList",
           "items": [
             {
               "kind": "ref",
-              "id": "o2"
+              "id": "o60"
             },
             {
               "kind": "ref",
-              "id": "o3"
+              "id": "o62"
             }
           ]
         },
-        "o2": {
-          "kind": "string",
-          "value": "Ana"
-        },
-        "o3": {
-          "kind": "string",
-          "value": "Beto"
-        },
-        "o4": {
+        "o63": {
           "kind": "map",
           "class": "java.util.HashMap",
           "entries": [
             {
               "key": {
                 "kind": "ref",
-                "id": "o2"
+                "id": "o60"
               },
               "value": {
                 "kind": "ref",
-                "id": "o5"
+                "id": "o69"
               }
             }
           ]
         },
-        "o5": {
+        "o60": {
+          "kind": "string",
+          "value": "Ana"
+        },
+        "o62": {
+          "kind": "string",
+          "value": "Beto"
+        },
+        "o69": {
           "kind": "boxed",
           "class": "java.lang.Integer",
           "value": {
@@ -294,94 +293,77 @@
           }
         }
       },
-      "file": "Main.java"
+      "statics": {},
+      "stdout": ""
     },
     {
-      "stdout": "",
-      "statics": {},
       "event": "line",
+      "file": "Main.java",
       "line": 11,
       "stack": [
         {
           "id": "f1",
           "class": "Main",
           "method": "main",
+          "file": "Main.java",
           "line": 11,
           "locals": [
             {
               "name": "nombres",
               "value": {
                 "kind": "ref",
-                "id": "o1"
+                "id": "o55"
               }
             },
             {
               "name": "edades",
               "value": {
                 "kind": "ref",
-                "id": "o4"
+                "id": "o63"
               }
             },
             {
               "name": "v",
               "value": {
                 "kind": "ref",
-                "id": "o6"
+                "id": "o72"
               }
             }
-          ],
-          "file": "Main.java"
+          ]
         }
       ],
       "heap": {
-        "o1": {
+        "o55": {
           "kind": "list",
           "class": "java.util.ArrayList",
           "items": [
             {
               "kind": "ref",
-              "id": "o2"
+              "id": "o60"
             },
             {
               "kind": "ref",
-              "id": "o3"
+              "id": "o62"
             }
           ]
         },
-        "o2": {
-          "kind": "string",
-          "value": "Ana"
-        },
-        "o3": {
-          "kind": "string",
-          "value": "Beto"
-        },
-        "o4": {
+        "o63": {
           "kind": "map",
           "class": "java.util.HashMap",
           "entries": [
             {
               "key": {
                 "kind": "ref",
-                "id": "o2"
+                "id": "o60"
               },
               "value": {
                 "kind": "ref",
-                "id": "o5"
+                "id": "o69"
               }
             }
           ]
         },
-        "o5": {
-          "kind": "boxed",
-          "class": "java.lang.Integer",
-          "value": {
-            "kind": "prim",
-            "type": "int",
-            "value": 30
-          }
-        },
-        "o6": {
+        "o72": {
           "kind": "array",
           "elemType": "int",
           "items": [
@@ -396,96 +378,96 @@
               "value": 0
             }
           ]
+        },
+        "o60": {
+          "kind": "string",
+          "value": "Ana"
+        },
+        "o62": {
+          "kind": "string",
+          "value": "Beto"
+        },
+        "o69": {
+          "kind": "boxed",
+          "class": "java.lang.Integer",
+          "value": {
+            "kind": "prim",
+            "type": "int",
+            "value": 30
+          }
         }
       },
-      "file": "Main.java"
+      "statics": {},
+      "stdout": ""
     },
     {
-      "stdout": "Exception in thread \"main\" java.lang.ArrayIndexOutOfBoundsException: Index 2 out of bounds for length 2\n\tat Main.main(Main.java:11)\n",
-      "statics": {},
       "event": "exception",
+      "file": "Main.java",
       "line": 11,
       "stack": [
         {
           "id": "f1",
           "class": "Main",
           "method": "main",
+          "file": "Main.java",
           "line": 11,
           "locals": [
             {
               "name": "nombres",
               "value": {
                 "kind": "ref",
-                "id": "o1"
+                "id": "o55"
               }
             },
             {
               "name": "edades",
               "value": {
                 "kind": "ref",
-                "id": "o4"
+                "id": "o63"
               }
             },
             {
               "name": "v",
               "value": {
                 "kind": "ref",
-                "id": "o6"
+                "id": "o72"
               }
             }
-          ],
-          "file": "Main.java"
+          ]
         }
       ],
       "heap": {
-        "o1": {
+        "o55": {
           "kind": "list",
           "class": "java.util.ArrayList",
           "items": [
             {
               "kind": "ref",
-              "id": "o2"
+              "id": "o60"
             },
             {
               "kind": "ref",
-              "id": "o3"
+              "id": "o62"
             }
           ]
         },
-        "o2": {
-          "kind": "string",
-          "value": "Ana"
-        },
-        "o3": {
-          "kind": "string",
-          "value": "Beto"
-        },
-        "o4": {
+        "o63": {
           "kind": "map",
           "class": "java.util.HashMap",
           "entries": [
             {
               "key": {
                 "kind": "ref",
-                "id": "o2"
+                "id": "o60"
               },
               "value": {
                 "kind": "ref",
-                "id": "o5"
+                "id": "o69"
               }
             }
           ]
         },
-        "o5": {
-          "kind": "boxed",
-          "class": "java.lang.Integer",
-          "value": {
-            "kind": "prim",
-            "type": "int",
-            "value": 30
-          }
-        },
-        "o6": {
+        "o72": {
           "kind": "array",
           "elemType": "int",
           "items": [
@@ -501,18 +483,36 @@
             }
           ]
         },
-        "o7": {
+        "o76": {
           "kind": "opaque",
           "class": "java.lang.ArrayIndexOutOfBoundsException",
           "label": "Index 2 out of bounds for length 2"
+        },
+        "o60": {
+          "kind": "string",
+          "value": "Ana"
+        },
+        "o62": {
+          "kind": "string",
+          "value": "Beto"
+        },
+        "o69": {
+          "kind": "boxed",
+          "class": "java.lang.Integer",
+          "value": {
+            "kind": "prim",
+            "type": "int",
+            "value": 30
+          }
         }
       },
+      "statics": {},
+      "stdout": "Exception in thread \"main\" java.lang.ArrayIndexOutOfBoundsException: Index 2 out of bounds for length 2\n\tat Main.main(Main.java:11)\n",
       "exception": {
         "class": "java.lang.ArrayIndexOutOfBoundsException",
         "message": "Index 2 out of bounds for length 2",
-        "id": "o7"
-      },
-      "file": "Main.java"
+        "id": "o76"
+      }
     }
   ]
 }

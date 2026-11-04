@@ -89,8 +89,9 @@ function Graph() {
   return (
     <ReactFlow
       className="heap-graph"
-      nodes={graph.nodes}
-      edges={graph.edges}
+      // Sin traza (p.ej. proyecto todavía sin ejecutar) no queda dibujado el grafo anterior.
+      nodes={model ? graph.nodes : []}
+      edges={model ? graph.edges : []}
       nodeTypes={nodeTypes}
       edgeTypes={edgeTypes}
       nodesDraggable={false}

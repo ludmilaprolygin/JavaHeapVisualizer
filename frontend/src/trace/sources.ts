@@ -28,11 +28,6 @@ export function validateTrace(data: unknown, origin: string): Trace {
 }
 
 export async function readTraceFile(file: File): Promise<Trace> {
-  if (file.name.endsWith('.java')) {
-    throw new TraceLoadError(
-      `"${file.name}" es código Java: para verlo paso a paso hay que ejecutarlo, y eso lo va a hacer el backend (todavía no existe). Por ahora se pueden abrir trazas .json.`,
-    )
-  }
   let data: unknown
   try {
     data = JSON.parse(await file.text())

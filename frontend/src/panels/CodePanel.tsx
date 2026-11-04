@@ -1,16 +1,16 @@
 import Editor, { type Monaco, type OnMount } from '@monaco-editor/react'
 import type { editor } from 'monaco-editor/editor/editor.api'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import type { SourceFile, Trace } from '../trace/schema'
+import type { SourceFile } from '../trace/schema'
 import { useCurrentStep, useTraceStore } from '../trace/store'
 import { usePrefersDark } from '../usePrefersDark'
 
 const basename = (path: string) => path.slice(path.lastIndexOf('/') + 1)
 
 /** El archivo de la clase principal primero, el resto alfabético. */
-function orderFiles(trace: Trace): SourceFile[] {
-  const mainPath = trace.mainClass.replaceAll('.', '/') + '.java'
-  return [...trace.files].sort(
+function orderFiles(files: SourceFile[], mainClass: string | null): SourceFile[] {
+  const mainPath = mainClass?.replaceAll('.', '/') + '.java'
+  return [...files].sort(
     (a, b) => Number(b.path === mainPath) - Number(a.path === mainPath) || a.path.localeCompare(b.path),
   )
 }
@@ -24,12 +24,22 @@ function tabLabels(files: SourceFile[]): Map<string, string> {
 
 export default function CodePanel() {
   const trace = useTraceStore((s) => s.trace)
+  const project = useTraceStore((s) => s.project)
   const loadId = useTraceStore((s) => s.loadId)
   const index = useTraceStore((s) => s.index)
   const step = useCurrentStep()
   const dark = usePrefersDark()
 
-  const files = useMemo(() => (trace ? orderFiles(trace) : []), [trace])
+  // Sin traza (proyecto recién cargado, todavía sin ejecutar) mostramos los archivos del proyecto.
+  const files = useMemo(
+    () =>
+      trace
+        ? orderFiles(trace.files, trace.mainClass)
+        : project
+          ? orderFiles(project.files, project.mainClass)
+          : [],
+    [trace, project],
+  )
   const labels = useMemo(() => tabLabels(files), [files])
 
   // Por defecto se muestra el archivo que se está ejecutando. Si el usuario elige
@@ -58,7 +68,17 @@ export default function CodePanel() {
     const ed = editorRef.current
     if (!ed || !decorations.current) return
     if (!step) {
-      decorations.current.clear()
+      // Sin pasos (no compiló): marcamos la línea del error.
+      const err = trace?.error
+      decorations.current.set(
+        err?.line && err.file === shown
+          ? [{
+              range: { startLineNumber: err.line, startColumn: 1, endLineNumber: err.line, endColumn: 1 },
+              options: { isWholeLine: true, className: 'jhv-error-line', glyphMarginClassName: 'jhv-error-line-glyph' },
+            }]
+          : [],
+      )
+      if (err?.line && err.file === shown) editorRef.current?.revealLineInCenterIfOutsideViewport(err.line)
       return
     }
     const lineRange = (line: number) => ({ startLineNumber: line, startColumn: 1, endLineNumber: line, endColumn: 1 })
@@ -81,7 +101,7 @@ export default function CodePanel() {
     if (here) ed.revealLineInCenterIfOutsideViewport(step.line)
   }
 
-  useEffect(highlight, [step, shown, content, mounted])
+  useEffect(highlight, [step, shown, content, mounted, trace])
 
   // Liberar los modelos de trazas anteriores. El Editor ya pasó al modelo nuevo
   // (los efectos de los hijos corren antes que los del padre).

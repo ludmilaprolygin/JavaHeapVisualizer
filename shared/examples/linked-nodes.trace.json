@@ -10,36 +10,20 @@
   "status": "ok",
   "steps": [
     {
-      "stdout": "",
-      "statics": {
-        "Main": [
-          {
-            "name": "contador",
-            "value": {
-              "kind": "prim",
-              "type": "int",
-              "value": 0
-            }
-          }
-        ]
-      },
       "event": "call",
+      "file": "Main.java",
       "line": 11,
       "stack": [
         {
           "id": "f1",
           "class": "Main",
           "method": "main",
+          "file": "Main.java",
           "line": 11,
-          "locals": [],
-          "file": "Main.java"
+          "locals": []
         }
       ],
       "heap": {},
-      "file": "Main.java"
-    },
-    {
-      "stdout": "",
       "statics": {
         "Main": [
           {
@@ -52,28 +36,33 @@
           }
         ]
       },
+      "stdout": ""
+    },
+    {
       "event": "call",
+      "file": "Main.java",
       "line": 5,
       "stack": [
         {
           "id": "f1",
           "class": "Main",
           "method": "main",
+          "file": "Main.java",
           "line": 11,
-          "locals": [],
-          "file": "Main.java"
+          "locals": []
         },
         {
           "id": "f2",
           "class": "Main$Nodo",
           "method": "<init>",
+          "file": "Main.java",
           "line": 5,
           "locals": [
             {
               "name": "this",
               "value": {
                 "kind": "ref",
-                "id": "o1"
+                "id": "o56"
               }
             },
             {
@@ -84,12 +73,11 @@
                 "value": 1
               }
             }
-          ],
-          "file": "Main.java"
+          ]
         }
       ],
       "heap": {
-        "o1": {
+        "o56": {
           "kind": "object",
           "class": "Main$Nodo",
           "fields": [
@@ -110,10 +98,6 @@
           ]
         }
       },
-      "file": "Main.java"
-    },
-    {
-      "stdout": "",
       "statics": {
         "Main": [
           {
@@ -126,29 +110,33 @@
           }
         ]
       },
+      "stdout": ""
+    },
+    {
       "event": "return",
+      "file": "Main.java",
       "line": 5,
-      "returnValue": null,
       "stack": [
         {
           "id": "f1",
           "class": "Main",
           "method": "main",
+          "file": "Main.java",
           "line": 11,
-          "locals": [],
-          "file": "Main.java"
+          "locals": []
         },
         {
           "id": "f2",
           "class": "Main$Nodo",
           "method": "<init>",
+          "file": "Main.java",
           "line": 5,
           "locals": [
             {
               "name": "this",
               "value": {
                 "kind": "ref",
-                "id": "o1"
+                "id": "o56"
               }
             },
             {
@@ -159,12 +147,11 @@
                 "value": 1
               }
             }
-          ],
-          "file": "Main.java"
+          ]
         }
       ],
       "heap": {
-        "o1": {
+        "o56": {
           "kind": "object",
           "class": "Main$Nodo",
           "fields": [
@@ -185,10 +172,6 @@
           ]
         }
       },
-      "file": "Main.java"
-    },
-    {
-      "stdout": "",
       "statics": {
         "Main": [
           {
@@ -201,28 +184,82 @@
           }
         ]
       },
+      "stdout": ""
+    },
+    {
       "event": "line",
+      "file": "Main.java",
+      "line": 11,
+      "stack": [
+        {
+          "id": "f1",
+          "class": "Main",
+          "method": "main",
+          "file": "Main.java",
+          "line": 11,
+          "locals": []
+        }
+      ],
+      "heap": {
+        "o56": {
+          "kind": "object",
+          "class": "Main$Nodo",
+          "fields": [
+            {
+              "name": "valor",
+              "value": {
+                "kind": "prim",
+                "type": "int",
+                "value": 1
+              }
+            },
+            {
+              "name": "siguiente",
+              "value": {
+                "kind": "null"
+              }
+            }
+          ]
+        }
+      },
+      "statics": {
+        "Main": [
+          {
+            "name": "contador",
+            "value": {
+              "kind": "prim",
+              "type": "int",
+              "value": 0
+            }
+          }
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "event": "line",
+      "file": "Main.java",
       "line": 12,
       "stack": [
         {
           "id": "f1",
           "class": "Main",
           "method": "main",
+          "file": "Main.java",
           "line": 12,
           "locals": [
             {
               "name": "a",
               "value": {
                 "kind": "ref",
-                "id": "o1"
+                "id": "o56"
               }
             }
-          ],
-          "file": "Main.java"
+          ]
         }
       ],
       "heap": {
-        "o1": {
+        "o56": {
           "kind": "object",
           "class": "Main$Nodo",
           "fields": [
@@ -243,10 +280,6 @@
           ]
         }
       },
-      "file": "Main.java"
-    },
-    {
-      "stdout": "",
       "statics": {
         "Main": [
           {
@@ -259,36 +292,41 @@
           }
         ]
       },
+      "stdout": ""
+    },
+    {
       "event": "call",
+      "file": "Main.java",
       "line": 5,
       "stack": [
         {
           "id": "f1",
           "class": "Main",
           "method": "main",
+          "file": "Main.java",
           "line": 12,
           "locals": [
             {
               "name": "a",
               "value": {
                 "kind": "ref",
-                "id": "o1"
+                "id": "o56"
               }
             }
-          ],
-          "file": "Main.java"
+          ]
         },
         {
           "id": "f3",
           "class": "Main$Nodo",
           "method": "<init>",
+          "file": "Main.java",
           "line": 5,
           "locals": [
             {
               "name": "this",
               "value": {
                 "kind": "ref",
-                "id": "o2"
+                "id": "o57"
               }
             },
             {
@@ -299,12 +337,11 @@
                 "value": 2
               }
             }
-          ],
-          "file": "Main.java"
+          ]
         }
       ],
       "heap": {
-        "o1": {
+        "o56": {
           "kind": "object",
           "class": "Main$Nodo",
           "fields": [
@@ -324,7 +361,7 @@
             }
           ]
         },
-        "o2": {
+        "o57": {
           "kind": "object",
           "class": "Main$Nodo",
           "fields": [
@@ -345,10 +382,6 @@
           ]
         }
       },
-      "file": "Main.java"
-    },
-    {
-      "stdout": "",
       "statics": {
         "Main": [
           {
@@ -361,35 +394,219 @@
           }
         ]
       },
+      "stdout": ""
+    },
+    {
+      "event": "return",
+      "file": "Main.java",
+      "line": 5,
+      "stack": [
+        {
+          "id": "f1",
+          "class": "Main",
+          "method": "main",
+          "file": "Main.java",
+          "line": 12,
+          "locals": [
+            {
+              "name": "a",
+              "value": {
+                "kind": "ref",
+                "id": "o56"
+              }
+            }
+          ]
+        },
+        {
+          "id": "f3",
+          "class": "Main$Nodo",
+          "method": "<init>",
+          "file": "Main.java",
+          "line": 5,
+          "locals": [
+            {
+              "name": "this",
+              "value": {
+                "kind": "ref",
+                "id": "o57"
+              }
+            },
+            {
+              "name": "valor",
+              "value": {
+                "kind": "prim",
+                "type": "int",
+                "value": 2
+              }
+            }
+          ]
+        }
+      ],
+      "heap": {
+        "o56": {
+          "kind": "object",
+          "class": "Main$Nodo",
+          "fields": [
+            {
+              "name": "valor",
+              "value": {
+                "kind": "prim",
+                "type": "int",
+                "value": 1
+              }
+            },
+            {
+              "name": "siguiente",
+              "value": {
+                "kind": "null"
+              }
+            }
+          ]
+        },
+        "o57": {
+          "kind": "object",
+          "class": "Main$Nodo",
+          "fields": [
+            {
+              "name": "valor",
+              "value": {
+                "kind": "prim",
+                "type": "int",
+                "value": 2
+              }
+            },
+            {
+              "name": "siguiente",
+              "value": {
+                "kind": "null"
+              }
+            }
+          ]
+        }
+      },
+      "statics": {
+        "Main": [
+          {
+            "name": "contador",
+            "value": {
+              "kind": "prim",
+              "type": "int",
+              "value": 0
+            }
+          }
+        ]
+      },
+      "stdout": ""
+    },
+    {
       "event": "line",
+      "file": "Main.java",
+      "line": 12,
+      "stack": [
+        {
+          "id": "f1",
+          "class": "Main",
+          "method": "main",
+          "file": "Main.java",
+          "line": 12,
+          "locals": [
+            {
+              "name": "a",
+              "value": {
+                "kind": "ref",
+                "id": "o56"
+              }
+            }
+          ]
+        }
+      ],
+      "heap": {
+        "o56": {
+          "kind": "object",
+          "class": "Main$Nodo",
+          "fields": [
+            {
+              "name": "valor",
+              "value": {
+                "kind": "prim",
+                "type": "int",
+                "value": 1
+              }
+            },
+            {
+              "name": "siguiente",
+              "value": {
+                "kind": "null"
+              }
+            }
+          ]
+        },
+        "o57": {
+          "kind": "object",
+          "class": "Main$Nodo",
+          "fields": [
+            {
+              "name": "valor",
+              "value": {
+                "kind": "prim",
+                "type": "int",
+                "value": 2
+              }
+            },
+            {
+              "name": "siguiente",
+              "value": {
+                "kind": "null"
+              }
+            }
+          ]
+        }
+      },
+      "statics": {
+        "Main": [
+          {
+            "name": "contador",
+            "value": {
+              "kind": "prim",
+              "type": "int",
+              "value": 0
+            }
+          }
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "event": "line",
+      "file": "Main.java",
       "line": 13,
       "stack": [
         {
           "id": "f1",
           "class": "Main",
           "method": "main",
+          "file": "Main.java",
           "line": 13,
           "locals": [
             {
               "name": "a",
               "value": {
                 "kind": "ref",
-                "id": "o1"
+                "id": "o56"
               }
             },
             {
               "name": "b",
               "value": {
                 "kind": "ref",
-                "id": "o2"
+                "id": "o57"
               }
             }
-          ],
-          "file": "Main.java"
+          ]
         }
       ],
       "heap": {
-        "o1": {
+        "o56": {
           "kind": "object",
           "class": "Main$Nodo",
           "fields": [
@@ -409,7 +626,7 @@
             }
           ]
         },
-        "o2": {
+        "o57": {
           "kind": "object",
           "class": "Main$Nodo",
           "fields": [
@@ -430,10 +647,6 @@
           ]
         }
       },
-      "file": "Main.java"
-    },
-    {
-      "stdout": "",
       "statics": {
         "Main": [
           {
@@ -446,35 +659,39 @@
           }
         ]
       },
+      "stdout": ""
+    },
+    {
       "event": "line",
+      "file": "Main.java",
       "line": 14,
       "stack": [
         {
           "id": "f1",
           "class": "Main",
           "method": "main",
+          "file": "Main.java",
           "line": 14,
           "locals": [
             {
               "name": "a",
               "value": {
                 "kind": "ref",
-                "id": "o1"
+                "id": "o56"
               }
             },
             {
               "name": "b",
               "value": {
                 "kind": "ref",
-                "id": "o2"
+                "id": "o57"
               }
             }
-          ],
-          "file": "Main.java"
+          ]
         }
       ],
       "heap": {
-        "o1": {
+        "o56": {
           "kind": "object",
           "class": "Main$Nodo",
           "fields": [
@@ -490,12 +707,12 @@
               "name": "siguiente",
               "value": {
                 "kind": "ref",
-                "id": "o2"
+                "id": "o57"
               }
             }
           ]
         },
-        "o2": {
+        "o57": {
           "kind": "object",
           "class": "Main$Nodo",
           "fields": [
@@ -516,10 +733,6 @@
           ]
         }
       },
-      "file": "Main.java"
-    },
-    {
-      "stdout": "",
       "statics": {
         "Main": [
           {
@@ -527,40 +740,44 @@
             "value": {
               "kind": "prim",
               "type": "int",
-              "value": 2
+              "value": 0
             }
           }
         ]
       },
+      "stdout": ""
+    },
+    {
       "event": "line",
+      "file": "Main.java",
       "line": 15,
       "stack": [
         {
           "id": "f1",
           "class": "Main",
           "method": "main",
+          "file": "Main.java",
           "line": 15,
           "locals": [
             {
               "name": "a",
               "value": {
                 "kind": "ref",
-                "id": "o1"
+                "id": "o56"
               }
             },
             {
               "name": "b",
               "value": {
                 "kind": "ref",
-                "id": "o2"
+                "id": "o57"
               }
             }
-          ],
-          "file": "Main.java"
+          ]
         }
       ],
       "heap": {
-        "o1": {
+        "o56": {
           "kind": "object",
           "class": "Main$Nodo",
           "fields": [
@@ -576,12 +793,12 @@
               "name": "siguiente",
               "value": {
                 "kind": "ref",
-                "id": "o2"
+                "id": "o57"
               }
             }
           ]
         },
-        "o2": {
+        "o57": {
           "kind": "object",
           "class": "Main$Nodo",
           "fields": [
@@ -602,10 +819,6 @@
           ]
         }
       },
-      "file": "Main.java"
-    },
-    {
-      "stdout": "",
       "statics": {
         "Main": [
           {
@@ -618,42 +831,46 @@
           }
         ]
       },
+      "stdout": ""
+    },
+    {
       "event": "line",
+      "file": "Main.java",
       "line": 16,
       "stack": [
         {
           "id": "f1",
           "class": "Main",
           "method": "main",
+          "file": "Main.java",
           "line": 16,
           "locals": [
             {
               "name": "a",
               "value": {
                 "kind": "ref",
-                "id": "o1"
+                "id": "o56"
               }
             },
             {
               "name": "b",
               "value": {
                 "kind": "ref",
-                "id": "o2"
+                "id": "o57"
               }
             },
             {
               "name": "saludo",
               "value": {
                 "kind": "ref",
-                "id": "o3"
+                "id": "o58"
               }
             }
-          ],
-          "file": "Main.java"
+          ]
         }
       ],
       "heap": {
-        "o1": {
+        "o56": {
           "kind": "object",
           "class": "Main$Nodo",
           "fields": [
@@ -669,12 +886,12 @@
               "name": "siguiente",
               "value": {
                 "kind": "ref",
-                "id": "o2"
+                "id": "o57"
               }
             }
           ]
         },
-        "o2": {
+        "o57": {
           "kind": "object",
           "class": "Main$Nodo",
           "fields": [
@@ -694,15 +911,11 @@
             }
           ]
         },
-        "o3": {
+        "o58": {
           "kind": "string",
           "value": "hola"
         }
       },
-      "file": "Main.java"
-    },
-    {
-      "stdout": "",
       "statics": {
         "Main": [
           {
@@ -715,49 +928,53 @@
           }
         ]
       },
+      "stdout": ""
+    },
+    {
       "event": "line",
+      "file": "Main.java",
       "line": 17,
       "stack": [
         {
           "id": "f1",
           "class": "Main",
           "method": "main",
+          "file": "Main.java",
           "line": 17,
           "locals": [
             {
               "name": "a",
               "value": {
                 "kind": "ref",
-                "id": "o1"
+                "id": "o56"
               }
             },
             {
               "name": "b",
               "value": {
                 "kind": "ref",
-                "id": "o2"
+                "id": "o57"
               }
             },
             {
               "name": "saludo",
               "value": {
                 "kind": "ref",
-                "id": "o3"
+                "id": "o58"
               }
             },
             {
               "name": "nums",
               "value": {
                 "kind": "ref",
-                "id": "o4"
+                "id": "o60"
               }
             }
-          ],
-          "file": "Main.java"
+          ]
         }
       ],
       "heap": {
-        "o1": {
+        "o56": {
           "kind": "object",
           "class": "Main$Nodo",
           "fields": [
@@ -773,12 +990,12 @@
               "name": "siguiente",
               "value": {
                 "kind": "ref",
-                "id": "o2"
+                "id": "o57"
               }
             }
           ]
         },
-        "o2": {
+        "o57": {
           "kind": "object",
           "class": "Main$Nodo",
           "fields": [
@@ -798,11 +1015,11 @@
             }
           ]
         },
-        "o3": {
+        "o58": {
           "kind": "string",
           "value": "hola"
         },
-        "o4": {
+        "o60": {
           "kind": "array",
           "elemType": "int",
           "items": [
@@ -824,10 +1041,6 @@
           ]
         }
       },
-      "file": "Main.java"
-    },
-    {
-      "stdout": "hola\n",
       "statics": {
         "Main": [
           {
@@ -840,49 +1053,53 @@
           }
         ]
       },
+      "stdout": ""
+    },
+    {
       "event": "line",
+      "file": "Main.java",
       "line": 18,
       "stack": [
         {
           "id": "f1",
           "class": "Main",
           "method": "main",
+          "file": "Main.java",
           "line": 18,
           "locals": [
             {
               "name": "a",
               "value": {
                 "kind": "ref",
-                "id": "o1"
+                "id": "o56"
               }
             },
             {
               "name": "b",
               "value": {
                 "kind": "ref",
-                "id": "o2"
+                "id": "o57"
               }
             },
             {
               "name": "saludo",
               "value": {
                 "kind": "ref",
-                "id": "o3"
+                "id": "o58"
               }
             },
             {
               "name": "nums",
               "value": {
                 "kind": "ref",
-                "id": "o4"
+                "id": "o60"
               }
             }
-          ],
-          "file": "Main.java"
+          ]
         }
       ],
       "heap": {
-        "o1": {
+        "o56": {
           "kind": "object",
           "class": "Main$Nodo",
           "fields": [
@@ -898,12 +1115,12 @@
               "name": "siguiente",
               "value": {
                 "kind": "ref",
-                "id": "o2"
+                "id": "o57"
               }
             }
           ]
         },
-        "o2": {
+        "o57": {
           "kind": "object",
           "class": "Main$Nodo",
           "fields": [
@@ -923,11 +1140,11 @@
             }
           ]
         },
-        "o3": {
+        "o58": {
           "kind": "string",
           "value": "hola"
         },
-        "o4": {
+        "o60": {
           "kind": "array",
           "elemType": "int",
           "items": [
@@ -949,7 +1166,144 @@
           ]
         }
       },
-      "file": "Main.java"
+      "statics": {
+        "Main": [
+          {
+            "name": "contador",
+            "value": {
+              "kind": "prim",
+              "type": "int",
+              "value": 2
+            }
+          }
+        ]
+      },
+      "stdout": "hola\n"
+    },
+    {
+      "event": "return",
+      "file": "Main.java",
+      "line": 18,
+      "stack": [
+        {
+          "id": "f1",
+          "class": "Main",
+          "method": "main",
+          "file": "Main.java",
+          "line": 18,
+          "locals": [
+            {
+              "name": "a",
+              "value": {
+                "kind": "ref",
+                "id": "o56"
+              }
+            },
+            {
+              "name": "b",
+              "value": {
+                "kind": "ref",
+                "id": "o57"
+              }
+            },
+            {
+              "name": "saludo",
+              "value": {
+                "kind": "ref",
+                "id": "o58"
+              }
+            },
+            {
+              "name": "nums",
+              "value": {
+                "kind": "ref",
+                "id": "o60"
+              }
+            }
+          ]
+        }
+      ],
+      "heap": {
+        "o56": {
+          "kind": "object",
+          "class": "Main$Nodo",
+          "fields": [
+            {
+              "name": "valor",
+              "value": {
+                "kind": "prim",
+                "type": "int",
+                "value": 1
+              }
+            },
+            {
+              "name": "siguiente",
+              "value": {
+                "kind": "ref",
+                "id": "o57"
+              }
+            }
+          ]
+        },
+        "o57": {
+          "kind": "object",
+          "class": "Main$Nodo",
+          "fields": [
+            {
+              "name": "valor",
+              "value": {
+                "kind": "prim",
+                "type": "int",
+                "value": 2
+              }
+            },
+            {
+              "name": "siguiente",
+              "value": {
+                "kind": "null"
+              }
+            }
+          ]
+        },
+        "o58": {
+          "kind": "string",
+          "value": "hola"
+        },
+        "o60": {
+          "kind": "array",
+          "elemType": "int",
+          "items": [
+            {
+              "kind": "prim",
+              "type": "int",
+              "value": 1
+            },
+            {
+              "kind": "prim",
+              "type": "int",
+              "value": 2
+            },
+            {
+              "kind": "prim",
+              "type": "int",
+              "value": 3
+            }
+          ]
+        }
+      },
+      "statics": {
+        "Main": [
+          {
+            "name": "contador",
+            "value": {
+              "kind": "prim",
+              "type": "int",
+              "value": 2
+            }
+          }
+        ]
+      },
+      "stdout": "hola\n"
     }
   ]
 }
